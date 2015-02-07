@@ -1,4 +1,4 @@
-=== Plugin Name ===
+# Plugin Name
 Contributors: winterpk
 Donate link: 
 Tags: comments, spam
@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Create a simple link for calendar events 
 
-== Description ==
+# Description 
 
 This plugins add shortcode which allow simple creation of event links
 
@@ -33,38 +33,36 @@ It accepts several required parameters and a few optionl:
 *	theme 				- Optional, used to switch between themes. Defaults to 'text'.  
 *   link_text 			- Optional, used when theme is set to 'text'.
  
-== Example ==
+# Example
 `[satc theme="text" link_text="Click To Add To Calendar" start_date="2/6/2015" start_time="11:30am" end_date="2/6/2015" end_time="12:00pm" event_name="Test Event" event_description="This is a test event" event_timezone="America/Denver"]`
 
-== Installation ==
+# Installation
 
 This section describes how to install the plugin and get it working.
-
-e.g.
 
 1. Upload `satc` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 2. Place `[satc]` shortcode in your templates
 
-== Frequently Asked Questions ==
+# Frequently Asked Questions 
 
-= What does this do? =
+## What does this do? 
 
 Read the description.
  
-= Why is there only 1 theme? =
+## Why is there only 1 theme?
 
 I'm still working on the other themes
 
-= What formats does it support? =
+## What formats does it support?
 
 For now only Outlook and iCalendar
 
-== Screenshots ==
+## Screenshots
 
 
-== Changelog ==
+# Changelog 
 
-= 1.0.0 =
+## 1.0.0
 * First release candidate
 * Very basic functionality
