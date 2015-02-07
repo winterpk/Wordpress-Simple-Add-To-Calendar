@@ -1,6 +1,6 @@
 # Plugin Name
 Contributors: winterpk
-Donate link: 
+Donate link:
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 4.1
@@ -58,7 +58,7 @@ I'm still working on the other themes
 
 For now only Outlook and iCalendar
 
-## Screenshots
+# Screenshots
 
 
 # Changelog 

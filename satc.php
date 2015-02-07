@@ -148,6 +148,8 @@ class satc {
 	 * @param	string	If this is a text link this field is required
 	 */
 	private function _build_html($link_text = false) {
+		print_r($this->valid_fields);
+		exit;
 		$output = '<div class="dropdown satc-event" >';
 		if ($link_text) {
 			$output .= '<a data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" href="#" class="satc-element ' . $this->valid_fields["theme"] . '">' . $link_text . '</a>';
@@ -163,7 +165,21 @@ class satc {
 		$output .= '<ul class="satc-dropdown-menu dropdown-menu" role="menu">';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">Outlook</a></li>';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">iCalendar</a></li>';
-		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="google">Google</a></li>';
+		//$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="google">Google</a></li>';
+		//$output .= "<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=".$this->valid_fields['name']."&dates=".$this->valid_fields['start_date']."/".$this->valid_fields['end_date']."&details=".$this->valid_fields['description']."&location=[location]&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>";
+		$output .= '';
+		// <a href="http://www.google.com/calendar/event?
+/*<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=[event-title]&dates=[start-custom format='Ymd\\THi00\\Z']/[end-custom format='Ymd\\THi00\\Z']&details=[description]&location=[location]&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>
+action=TEMPLATE
+&text=[event-title]
+&dates=[start-custom format='Ymd\\THi00\\Z']/[end-custom format='Ymd\\THi00\\Z']
+&details=[description]
+&location=[location]
+&trp=false
+&sprop=
+&sprop=name:"
+target="_blank" rel="nofollow">Add to my calendar</a>*/
+
     	$output .= '</ul>';
 		$output .= '</div>';
 		return $output;
