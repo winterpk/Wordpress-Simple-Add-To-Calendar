@@ -38,12 +38,11 @@ var satcOnClick = function(ele) {
 			eventDetails[inputElements[key].name] = inputElements[key].value;
 		}
 	}
-	console.log(eventDetails['description']);
+	
 	// Build vcalendar string ...
 	var vEvent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:alpinesbsolutions.com\nBEGIN:VEVENT\nUID:"+eventDetails['uid']+"\nDTSTAMP;TZID=UTC:"+eventDetails['now']+"Z\nDTSTART;TZID=UTC:"+eventDetails['start_date']+"Z\nSEQUENCE:0\nTRANSP:OPAQUE\nDTEND;TZID=UTC:"+eventDetails['end_date']+"Z\nLOCATION:"+eventDetails['location']+"\nSUMMARY:"+eventDetails['summary']+"\nDESCRIPTION:"+eventDetails['description']+"\nEND:VEVENT\nEND:VCALENDAR";
-	console.log(eventDetails['filename']);
-	if (typeof eventDetails['filename'] === undefined) {
-		filename = 'event.ics';
+	if (typeof eventDetails['filename'] == "undefined") {
+		filename = eventDetails['uid']+'.ics';
 	} else {
 		
 		// Force the ics extention

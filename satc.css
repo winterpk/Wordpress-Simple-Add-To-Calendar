@@ -331,6 +331,9 @@ fieldset[disabled] .satc-btn-green {
  * SATC - Simple Add To Calendar Plugin Css	
  * 
  */
+.satc-event {
+	cursor: pointer;
+}
 .satc-image-cal1 {
 	background: url('images/satc-image-cal1.png') 0 0 no-repeat;
 	height: 51px;
