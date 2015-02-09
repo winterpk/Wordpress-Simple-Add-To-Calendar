@@ -30,9 +30,9 @@ It accepts several required parameters and a few optionl:
 *   timezone			- Required, Timezone of the event.
 *	event_summary		- Required, Summary of the event
 *	filename			- Optional, name of the file.
-*	theme 				- Optional, used to switch between themes. Defaults to 'text'.  
+*	theme 				- Optional, used to switch between themes. Defaults to 'text'. Available themes are: "satc-image-cal1", "satc-image-cal2", "satc-image-cal3", "satc-btn-blue", "satc-btn-green"
 *   link_text 			- Optional, used when theme is set to 'text'.
- 
+
 # Example
 `[satc theme="text" link_text="Click To Add To Calendar" start_date="2/6/2015" start_time="11:30am" end_date="2/6/2015" end_time="12:00pm" event_name="Test Event" event_description="This is a test event" event_timezone="America/Denver"]`
 
