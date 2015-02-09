@@ -32,11 +32,11 @@
   margin: 2px 0 0;
   list-style: none;
   text-align: left;
-  border: 1px solid ;
+  border: 1px solid #999999;
   background-clip: padding-box;
-  -webkit-box-shadow: 0px 0px 3px 3px rgba(163,163,163,1);
-  -moz-box-shadow: 0px 0px 3px 3px rgba(163,163,163,1);
-  box-shadow: 0px 0px 3px 3px rgba(163,163,163,1);
+  -webkit-box-shadow: 0px 0px 3px 2px rgba(191,191,191,1);
+  -moz-box-shadow: 0px 0px 3px 2px rgba(191,191,191,1);
+  box-shadow: 0px 0px 3px 2px rgba(191,191,191,1);
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -119,10 +119,249 @@
   }
 }
 
+/**
+ * Twitter bootstrap buttons 	
+ * Modified for my needs
+ * 
+ * Blue Button
+ */
+.satc-btn-blue {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.satc-btn-blue:focus,
+.satc-btn-blue:active:focus,
+.satc-btn-blue.active:focus,
+.satc-btn-blue.focus,
+.satc-btn-blue:active.focus,
+.satc-btn-blue.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.satc-btn-blue:hover,
+.satc-btn-blue:focus,
+.satc-btn-blue.focus {
+  color: #333;
+  text-decoration: none;
+}
+.satc-btn-blue:active,
+.satc-btn-blue.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.satc-btn-blue.disabled,
+.satc-btn-blue[disabled],
+fieldset[disabled] .satc-btn-blue {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+.satc-btn-blue {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.satc-btn-blue:hover,
+.satc-btn-blue:focus,
+.satc-btn-blue.focus,
+.satc-btn-blue:active,
+.satc-btn-blue.active,
+.open > .dropdown-toggle.satc-btn-blue {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.satc-btn-blue:active,
+.satc-btn-blue.active,
+.open > .dropdown-toggle.satc-btn-blue {
+  background-image: none;
+}
+.satc-btn-blue.disabled,
+.satc-btn-blue[disabled],
+fieldset[disabled] .satc-btn-blue,
+.satc-btn-blue.disabled:hover,
+.satc-btn-blue[disabled]:hover,
+fieldset[disabled] .satc-btn-blue:hover,
+.satc-btn-blue.disabled:focus,
+.satc-btn-blue[disabled]:focus,
+fieldset[disabled] .satc-btn-blue:focus,
+.satc-btn-blue.disabled.focus,
+.satc-btn-blue[disabled].focus,
+fieldset[disabled] .satc-btn-blue.focus,
+.satc-btn-blue.disabled:active,
+.satc-btn-blue[disabled]:active,
+fieldset[disabled] .satc-btn-blue:active,
+.satc-btn-blue.disabled.active,
+.satc-btn-blue[disabled].active,
+fieldset[disabled] .satc-btn-blue.active {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.satc-btn-blue .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+
+
+/** Green **/
+.satc-btn-green {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.satc-btn-green:hover,
+.satc-btn-green:focus,
+.satc-btn-green.focus,
+.satc-btn-green:active,
+.satc-btn-green.active,
+.open > .dropdown-toggle.satc-btn-green {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.satc-btn-green:active,
+.satc-btn-green.active,
+.open > .dropdown-toggle.satc-btn-green {
+  background-image: none;
+}
+.satc-btn-green.disabled,
+.satc-btn-green[disabled],
+fieldset[disabled] .satc-btn-green,
+.satc-btn-green.disabled:hover,
+.satc-btn-green[disabled]:hover,
+fieldset[disabled] .satc-btn-green:hover,
+.satc-btn-green.disabled:focus,
+.satc-btn-green[disabled]:focus,
+fieldset[disabled] .satc-btn-green:focus,
+.satc-btn-green.disabled.focus,
+.satc-btn-green[disabled].focus,
+fieldset[disabled] .satc-btn-green.focus,
+.satc-btn-green.disabled:active,
+.satc-btn-green[disabled]:active,
+fieldset[disabled] .satc-btn-green:active,
+.satc-btn-green.disabled.active,
+.satc-btn-green[disabled].active,
+fieldset[disabled] .satc-btn-green.active {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.satc-btn-green .badge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+.satc-btn-green {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.satc-btn-green:focus,
+.satc-btn-green:active:focus,
+.satc-btn-green.active:focus,
+.satc-btn-green.focus,
+.satc-btn-green:active.focus,
+.satc-btn-green.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.satc-btn-green:hover,
+.satc-btn-green:focus,
+.satc-btn-green.focus {
+  color: #333;
+  text-decoration: none;
+}
+.satc-btn-green:active,
+.satc-btn-green.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.satc-btn-green.disabled,
+.satc-btn-green[disabled],
+fieldset[disabled] .satc-btn-green {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
 
 /**
  * SATC - Simple Add To Calendar Plugin Css	
  * 
  */
-
+.satc-image-cal1 {
+	background: url('images/satc-image-cal1.png') 0 0 no-repeat;
+	height: 51px;
+	width: 150px;
+	display: block;
+	
+	/* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.satc-image-cal2 {
+	background: url('images/satc-image-cal2.png') 0 0 no-repeat;
+	height: 50px;
+	width: 50px;
+	display: block;
+	
+	/* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.satc-image-cal3 {
+	background: url('images/satc-image-cal3.png') 0 0 no-repeat;
+	height: 100px;
+	width: 100px;
+	display: block;
+	
+	/* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
 

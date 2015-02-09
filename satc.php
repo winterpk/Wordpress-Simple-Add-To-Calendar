@@ -76,8 +76,8 @@ class satc {
 		$valid_fields = $satc->validate_shortcode_fields($attrs);
 		
 		// Enqueue scripts and styles when shortcode is present
-		wp_enqueue_style('satc', plugins_url( 'satc', 'satc' ) . '/satc.css', array(), '1.0.0', 'all');
-		wp_enqueue_script( 'satc', plugins_url( 'satc', 'satc' ) . '/satc.js', array(), '1.0.0', true );
+		wp_enqueue_style('satc', plugins_url( 'satc', 'satc' ) . '/satc.css', array(), null, 'all');
+		wp_enqueue_script( 'satc', plugins_url( 'satc', 'satc' ) . '/satc.js', array(), null, true );
 		
 		// Localize the ajax url
 		$js_data = array(
@@ -99,22 +99,32 @@ class satc {
 			$end_date = new DateTime($satc->valid_fields['end_date'] . ' ' . $satc->valid_fields['end_time'], new DateTimeZone(date_default_timezone_get()));
 		}
 		
+		
 		// Parse and format start date/time and end date/time
 		$satc->valid_fields['start_date'] = $start_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
 		$satc->valid_fields['end_date'] = $end_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
-		//$satc->valid_fields['start_date'] = $start_date->format('Ymd\THis');
-		//$satc->valid_fields['end_date'] = $end_date->format('Ymd\THis');
+		
 		// Replace breaks with \n for icalformat then striptags.
 		// We also need to comment out the \n characters so vcalendar can parse it properly
 		$breaks = array("<br />","<br>","<br/>");
+		
+		// Decode all weird html entites
+		$description = html_entity_decode($description);
 		
 		// Remove all new line characters
 		$description = str_replace("\n", "", $description);
 		$description = str_replace("\r", "", $description);
 		
-		// Convert breaks to LITERAL new line characters
-    	$satc->valid_fields['description'] = $satc->escape_string(strip_tags(str_ireplace($breaks, "\\n", trim($description))));
+		// Strip out <p> tags and replace </p> with a break
+		$description = str_replace('<p>', '', $description);
+		$description = str_replace('</p>', '<br />', $description);
 		
+		// Convert breaks to LITERAL new line characters
+    	$satc->valid_fields['description'] = strip_tags( str_ireplace($breaks, "\\n", addslashes( trim($description))));
+		
+		$satc->valid_fields['url_description'] = urlencode(strip_tags(str_ireplace($breaks, "\n", trim($description))));
+
+
 		// Add a UID 
 		$satc->valid_fields['uid'] = uniqid();
 		
@@ -136,9 +146,6 @@ class satc {
 		} else {
 			$return = $satc->_build_html();
 		}
-		
-		
-		
 		return $return;
 	}
 	
@@ -150,7 +157,7 @@ class satc {
 	private function _build_html($link_text = false) {
 		$output = '<div class="dropdown satc-event" >';
 		if ($link_text) {
-			$output .= '<a data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" href="#" class="satc-element ' . $this->valid_fields["theme"] . '">' . $link_text . '</a>';
+			$output .= '<span data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" href="#" class="satc-element ' . $this->valid_fields["theme"] . '">' . $link_text . '</span>';
 			
 		} else {
 			$output .= '<span data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false" href="#" class="satc-element ' . $this->valid_fields["theme"] . '">&nbsp;</span>';
@@ -163,11 +170,8 @@ class satc {
 		$output .= '<ul class="satc-dropdown-menu dropdown-menu" role="menu">';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">Outlook</a></li>';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">iCalendar</a></li>';
-		$output .= "<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=".$this->valid_fields['name']."&dates=".$this->valid_fields['start_date']."/".$this->valid_fields['end_date']."&details=".$this->valid_fields['description']."&location=".$this->valid_fields['location']."&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>";
+		$output .= "<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=".urlencode($this->valid_fields['name'])."&dates=".$this->valid_fields['start_date']."Z/".$this->valid_fields['end_date']."Z&details=".$this->valid_fields['url_description']."&location=".urlencode($this->valid_fields['location'])."&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>";
 		$output .= '';
-		
-		///<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=[event-title]&dates=[start-custom format='Ymd\\THi00\\Z']/[end-custom format='Ymd\\THi00\\Z']&details=[description]&location=[location]&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>
-    	
     	$output .= '</ul>';
 		$output .= '</div>';
 		return $output;
