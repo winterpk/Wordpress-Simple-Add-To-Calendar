@@ -38,19 +38,7 @@ It accepts several required parameters and a few optionl:
  
 # Example
 
-	[satc
-		theme="text"
-		link_text="Click To Add To Calendar" 
-		start_date="2/6/2015" 
-		start_time="11:30am" 
-		end_date="2/6/2015" 
-		end_time="12:00pm"
-		timezone="America/Denver"
-		event_name="Test Event"
-		organizer="winterpk" 
-		location="Brazil" 
-		filename="brazil.ics"
-	]
+	[satc theme="text" link_text="Click To Add To Calendar" start_date="2/6/2015" start_time="11:30am" end_date="2/6/2015" end_time="12:00pm" timezone="America/Denver" event_name="Test Event" organizer="winterpk" location="Brazil" filename="brazil.ics"]
 	Description text goes here
 	Description line 2
 	[/satc]
