@@ -4,7 +4,7 @@ Donate link:
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,11 @@ For now only Outlook and iCalendar
 
 
 # Changelog 
+
+## 1.3.0
+
+* Rebuilt the backend to create a .ics file
+* Rebuilt the frontend to download the file normally
 
 ## 1.2.2
 

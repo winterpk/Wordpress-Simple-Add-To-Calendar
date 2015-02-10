@@ -57,18 +57,100 @@ class satc {
 		'timezone',
 	);
 	
+	var $temp_path = 'satc';
+	
+	var $url_temp_path = null;
+	
 	/**
 	 * Array containing the valid/sanitized fields from shortcode
 	 * 
 	 */
 	var $valid_fields = array();
 	
+	function __construct() {
+		// Set temp path
+		$uploads_dir = wp_upload_dir();
+		
+		// Set temp path url
+		$this->url_temp_path = $uploads_dir['baseurl'] . '/' . $this->temp_path;
+		
+		$path = $uploads_dir['basedir'] . '/' . $this->temp_path;
+		$this->temp_path = $path;
+		
+		// Clean up old files
+		$this->_clean_up_files();
+		
+		 
+	}
+	
+	/**
+	 * Activation hook fires on plugin activation
+	 * 
+	 */
+	static function install() {
+		$satc = new satc;
+		try {
+			
+			// Create the temp path if it doesn't exist
+			if (file_exists($satc->temp_path) === false) {
+				mkdir($satc->temp_path);
+			}
+			
+			if (file_exists($satc->temp_path . '.htaccess') === false) {
+				
+				// Create the .htaccess file to prevent access to all but .ics files
+				$file_string = '
+					Order Allow,Deny
+					<FilesMatch "^.*\.ics$">
+						Allow from all
+					</FilesMatch>
+				';
+				$file_handle = fopen($satc->temp_path . '/.htaccess', 'w');	
+				fwrite($file_handle, $file_string);
+				fclose($file_handle);
+			}
+			
+		} catch (ErrorException $e) {
+			wp_die('Unable to write to' . $satc->temp_path);
+		}
+	}
+
+	/**
+	 * Uninstallation function
+	 *  
+	 */
+	static function uninstall() {
+		$satc = new satc;
+		// Delete the temp folder
+		unlink($satc->rrmdir($satc->temp_path));
+	}
+	
+	/**
+	 * Recursively remove a directory
+	 * Pulled from http://php.net/rmdir one of the comments
+	 * 
+	 * @param	string	Directory path
+	 * @return	void	
+	 */
+	function rrmdir($dir) { 
+		if (is_dir($dir)) {
+			$objects = scandir($dir); 
+			foreach ($objects as $object) {
+				if ($object != "." && $object != "..") { 
+					if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object); 
+				} 
+			} 
+			reset($objects); 
+			rmdir($dir); 
+		} 
+	} 
+	
 	/**
 	 * Wordpress shortcode function
 	 * 
 	 * @param	array 	Array of attributes from the shortcode
 	 */
-	function satc_shortcode($attrs, $description) {
+	static function satc_shortcode($attrs, $description) {
 		$satc = new satc;
 		
 		// Validate and Sanitize all fields
@@ -98,7 +180,6 @@ class satc {
 			$end_date = new DateTime($satc->valid_fields['end_date'] . ' ' . $satc->valid_fields['end_time'], new DateTimeZone(date_default_timezone_get()));
 		}
 		
-		
 		// Parse and format start date/time and end date/time
 		$satc->valid_fields['start_date'] = $start_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
 		$satc->valid_fields['end_date'] = $end_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
@@ -126,7 +207,6 @@ class satc {
 		
 		$satc->valid_fields['url_description'] = urlencode(strip_tags(str_ireplace($breaks, "\n", trim($description))));
 
-
 		// Add a UID 
 		$satc->valid_fields['uid'] = uniqid();
 		
@@ -136,6 +216,10 @@ class satc {
 		// Get rid of start and end times because we no longer need those
 		unset($satc->valid_fields['start_time']);
 		unset($satc->valid_fields['end_time']);
+		
+		// Create the ics file and set path as a valid field
+		$ics_file_path = $satc->_create_ics_file();
+		$satc->valid_fields['ics_path'] = $ics_file_path;
 		
 		// Check for optional link text
 		if (isset($attrs['link_text']) && ! empty($attrs['link_text'])) {
@@ -177,6 +261,73 @@ class satc {
     	$output .= '</ul>';
 		$output .= '</div>';
 		return $output;
+	}
+	
+	/**
+	 * This function deletes all files in the temp directory older then x hours
+	 * 
+	 * @param	int	Hours to retain files
+	 * @return	void
+	 */
+	private function _clean_up_files($hours = 1) {
+		$hours = (int)$hours;
+		if (is_dir($this->temp_path)) {
+			$files = glob($this->temp_path . "*");	
+			$time = time();
+			foreach ($files as $file) {
+				if (is_file($file)) {
+					if ($time - filemtime($file) >= ($hours * 60)) {
+						unlink($file);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Creates the ics file for download
+	 * Valid fields must already be set
+	 * 
+	 * @return 	mixed	Path to the ics file or false on failure
+	 */
+	private function _create_ics_file() {
+		
+		
+$ics = 'BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:alpinesbsolutions.com
+BEGIN:VEVENT
+UID:' . $this->valid_fields["uid"] . '
+DTSTAMP;TZID=UTC:' . $this->valid_fields["now"] . '
+DTSTART;TZID=UTC:' . $this->valid_fields["start_date"] . '
+SEQUENCE:0
+TRANSP:OPAQUE
+DTEND;TZID=UTC:' . $this->valid_fields["end_date"] . '
+LOCATION:' . $this->valid_fields["location"] . '
+SUMMARY:' . $this->valid_fields["event_name"] . '
+DESCRIPTION:' . $this->valid_fields["description"] . '
+END:VEVENT
+END:VCALENDAR';
+		try {
+			
+			// Check for filename
+			if ( ! empty($this->valid_fields['filename'])) {
+				$filename = str_replace('.ics', '', $this->valid_fields['filename']) . '-' . $this->valid_fields['uid'] . '.ics';
+				
+			} else {
+				$filename = $this->valid_fields['uid'] . '.ics';
+			}
+			$filepath = $this->temp_path . '/' . $filename;
+			$urlpath = $this->url_temp_path . '/' . $filename;
+			$file_handler = fopen($filepath, "w");			
+			fwrite($file_handler, $ics);
+			fclose($file_handler);
+			return $urlpath;
+		} catch(ErrorException $e) {
+			return false;
+		}
+		// var vEvent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:alpinesbsolutions.com\nBEGIN:VEVENT\nUID:"+eventDetails['uid']+"\nDTSTAMP;TZID=UTC:"+eventDetails['now']+"Z\nDTSTART;TZID=UTC:"+eventDetails['start_date']+"Z\n
+		//SEQUENCE:0\nTRANSP:OPAQUE\nDTEND;TZID=UTC:"+eventDetails['end_date']+"Z\nLOCATION:"+eventDetails['location']+"\nSUMMARY:"+eventDetails['event_name']+"\nDESCRIPTION:"+eventDetails['description']+"\nEND:VEVENT\nEND:VCALENDAR";
 	}
 	
 	/**
@@ -234,3 +385,9 @@ add_action( 'wp_ajax_nopriv_satc', array('satc', 'satc_ajax') );
 
 // Add shortcode
 add_shortcode('satc', array('satc', 'satc_shortcode'));
+
+// Add activation hook
+register_activation_hook(__FILE__, array('satc', 'install'));
+
+// Add deactivation hook
+register_deactivation_hook(__FILE__, array('satc', 'uninstall'));

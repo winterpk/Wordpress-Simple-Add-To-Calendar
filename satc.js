@@ -12,9 +12,6 @@
 // v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 // v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
 
-// https://github.com/rndme/download
-function download(e,t,n){function d(e){var t=e.split(/[:;,]/),n=t[1],r=t[2]=="base64"?atob:decodeURIComponent,i=r(t.pop()),s=i.length,o=0,u=new Uint8Array(s);for(o;o<s;++o)u[o]=i.charCodeAt(o);return new l([u],{type:n})}function v(e,t){if("download"in a){a.href=e;a.setAttribute("download",c);a.innerHTML="downloading...";u.body.appendChild(a);setTimeout(function(){a.click();u.body.removeChild(a);if(t===true){setTimeout(function(){r.URL.revokeObjectURL(a.href)},250)}},66);return true}if(typeof safari!=="undefined"){e="data:"+e.replace(/^data:([\w\/\-\+]+)/,i);if(!window.open(e)){if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){location.href=e}}return true}var n=u.createElement("iframe");u.body.appendChild(n);if(!t){e="data:"+e.replace(/^data:([\w\/\-\+]+)/,i)}n.src=e;setTimeout(function(){u.body.removeChild(n)},333)}var r=window,i="application/octet-stream",s=n||i,o=e,u=document,a=u.createElement("a"),f=function(e){return String(e)},l=r.Blob||r.MozBlob||r.WebKitBlob||f;l=l.call?l.bind(r):Blob;var c=t||"download",h,p;if(String(this)==="true"){o=[o,s];s=o[0];o=o[1]}if(String(o).match(/^data\:[\w+\-]+\/[\w+\-]+[,;]/)){return navigator.msSaveBlob?navigator.msSaveBlob(d(o),c):v(o)}h=o instanceof l?o:new l([o],{type:s});if(navigator.msSaveBlob){return navigator.msSaveBlob(h,c)}if(r.URL){v(r.URL.createObjectURL(h),true)}else{if(typeof h==="string"||h.constructor===f){try{return v("data:"+s+";base64,"+r.btoa(h))}catch(m){return v("data:"+s+","+encodeURIComponent(h))}}p=new FileReader;p.onload=function(e){v(this.result)};p.readAsDataURL(h)}return true}
-
 /**
  * SATC Functionality
  *
@@ -39,15 +36,6 @@ var satcOnClick = function(ele) {
 		}
 	}
 	
-	// Build vcalendar string ...
-	var vEvent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:alpinesbsolutions.com\nBEGIN:VEVENT\nUID:"+eventDetails['uid']+"\nDTSTAMP;TZID=UTC:"+eventDetails['now']+"Z\nDTSTART;TZID=UTC:"+eventDetails['start_date']+"Z\nSEQUENCE:0\nTRANSP:OPAQUE\nDTEND;TZID=UTC:"+eventDetails['end_date']+"Z\nLOCATION:"+eventDetails['location']+"\nSUMMARY:"+eventDetails['event_name']+"\nDESCRIPTION:"+eventDetails['description']+"\nEND:VEVENT\nEND:VCALENDAR";
-	if (typeof eventDetails['filename'] == "undefined") {
-		filename = eventDetails['uid']+'.ics';
-	} else {
-		
-		// Force the ics extention
-		filename = eventDetails['filename'].split('.ics')[0] + '.ics';
-	}
-	
-	download(vEvent, filename, "text/plain");
+	// Open a new window for the ics_path
+	window.location = eventDetails['ics_path'];
 };
