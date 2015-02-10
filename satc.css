@@ -224,7 +224,7 @@ fieldset[disabled] .satc-btn-blue.active {
   color: #337ab7;
   background-color: #fff;
 }
-
+/** End Blue **/
 
 /** Green **/
 .satc-btn-green {
@@ -326,7 +326,315 @@ fieldset[disabled] .satc-btn-green {
           box-shadow: none;
   opacity: .65;
 }
+/** END GREEN **/
+	
+/** LIGHT BLUE **/
+/** LIGHT BLUE **/
+.satc-btn-ltblue {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.satc-btn-ltblue:hover,
+.satc-btn-ltblue:focus,
+.satc-btn-ltblue.focus,
+.satc-btn-ltblue:active,
+.satc-btn-ltblue.active,
+.open > .dropdown-toggle.satc-btn-ltblue {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.satc-btn-ltblue:active,
+.satc-btn-ltblue.active,
+.open > .dropdown-toggle.satc-btn-ltblue {
+  background-image: none;
+}
+.satc-btn-ltblue.disabled,
+.satc-btn-ltblue[disabled],
+fieldset[disabled] .satc-btn-ltblue,
+.satc-btn-ltblue.disabled:hover,
+.satc-btn-ltblue[disabled]:hover,
+fieldset[disabled] .satc-btn-ltblue:hover,
+.satc-btn-ltblue.disabled:focus,
+.satc-btn-ltblue[disabled]:focus,
+fieldset[disabled] .satc-btn-ltblue:focus,
+.satc-btn-ltblue.disabled.focus,
+.satc-btn-ltblue[disabled].focus,
+fieldset[disabled] .satc-btn-ltblue.focus,
+.satc-btn-ltblue.disabled:active,
+.satc-btn-ltblue[disabled]:active,
+fieldset[disabled] .satc-btn-ltblue:active,
+.satc-btn-ltblue.disabled.active,
+.satc-btn-ltblue[disabled].active,
+fieldset[disabled] .satc-btn-ltblue.active {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.satc-btn-ltblue .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+.satc-btn-ltblue {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.satc-btn-ltblue:focus,
+.satc-btn-ltblue:active:focus,
+.satc-btn-ltblue.active:focus,
+.satc-btn-ltblue.focus,
+.satc-btn-ltblue:active.focus,
+.satc-btn-ltblue.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.satc-btn-ltblue:hover,
+.satc-btn-ltblue:focus,
+.satc-btn-ltblue.focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+.satc-btn-ltblue:active,
+.satc-btn-ltblue.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.satc-btn-ltblue.disabled,
+.satc-btn-ltblue[disabled],
+fieldset[disabled] .satc-btn-ltblue {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+/** END LIGHT BLUE **/
 
+/** ORANGE BUTTON **/
+.satc-btn-orange {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.satc-btn-orange:hover,
+.satc-btn-orange:focus,
+.satc-btn-orange.focus,
+.satc-btn-orange:active,
+.satc-btn-orange.active,
+.open > .dropdown-toggle.satc-btn-orange {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.satc-btn-orange:active,
+.satc-btn-orange.active,
+.open > .dropdown-toggle.satc-btn-orange {
+  background-image: none;
+}
+.satc-btn-orange.disabled,
+.satc-btn-orange[disabled],
+fieldset[disabled] .satc-btn-orange,
+.satc-btn-orange.disabled:hover,
+.satc-btn-orange[disabled]:hover,
+fieldset[disabled] .satc-btn-orange:hover,
+.satc-btn-orange.disabled:focus,
+.satc-btn-orange[disabled]:focus,
+fieldset[disabled] .satc-btn-orange:focus,
+.satc-btn-orange.disabled.focus,
+.satc-btn-orange[disabled].focus,
+fieldset[disabled] .satc-btn-orange.focus,
+.satc-btn-orange.disabled:active,
+.satc-btn-orange[disabled]:active,
+fieldset[disabled] .satc-btn-orange:active,
+.satc-btn-orange.disabled.active,
+.satc-btn-orange[disabled].active,
+fieldset[disabled] .satc-btn-orange.active {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.satc-btn-orange .badge {
+  color: #f0ad4e;
+  background-color: #fff;
+}
+.satc-btn-orange {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.satc-btn-orange:focus,
+.satc-btn-orange:active:focus,
+.satc-btn-orange.active:focus,
+.satc-btn-orange.focus,
+.satc-btn-orange:active.focus,
+.satc-btn-orange.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.satc-btn-orange:hover,
+.satc-btn-orange:focus,
+.satc-btn-orange.focus {
+  color: #fff;
+  text-decoration: none;
+}
+.satc-btn-orange:active,
+.satc-btn-orange.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.satc-btn-orange.disabled,
+.satc-btn-orange[disabled],
+fieldset[disabled] .satc-btn-orange {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+/** END ORANGE BUTTON **/
+	
+/** RED BUTTON **/
+.satc-btn-red {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.satc-btn-red:hover,
+.satc-btn-red:focus,
+.satc-btn-red.focus,
+.satc-btn-red:active,
+.satc-btn-red.active,
+.open > .dropdown-toggle.satc-btn-red {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+.satc-btn-red:active,
+.satc-btn-red.active,
+.open > .dropdown-toggle.satc-btn-red {
+  background-image: none;
+}
+.satc-btn-red.disabled,
+.satc-btn-red[disabled],
+fieldset[disabled] .satc-btn-red,
+.satc-btn-red.disabled:hover,
+.satc-btn-red[disabled]:hover,
+fieldset[disabled] .satc-btn-red:hover,
+.satc-btn-red.disabled:focus,
+.satc-btn-red[disabled]:focus,
+fieldset[disabled] .satc-btn-red:focus,
+.satc-btn-red.disabled.focus,
+.satc-btn-red[disabled].focus,
+fieldset[disabled] .satc-btn-red.focus,
+.satc-btn-red.disabled:active,
+.satc-btn-red[disabled]:active,
+fieldset[disabled] .satc-btn-red:active,
+.satc-btn-red.disabled.active,
+.satc-btn-red[disabled].active,
+fieldset[disabled] .satc-btn-red.active {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.satc-btn-red .badge {
+  color: #d9534f;
+  background-color: #fff;
+}
+.satc-btn-red {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.satc-btn-red:focus,
+.satc-btn-red:active:focus,
+.satc-btn-red.active:focus,
+.satc-btn-red.focus,
+.satc-btn-red:active.focus,
+.satc-btn-red.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.satc-btn-red:hover,
+.satc-btn-red:focus,
+.satc-btn-red.focus {
+  color: #333;
+  text-decoration: none;
+}
+.satc-btn-red:active,
+.satc-btn-red.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.satc-btn-red.disabled,
+.satc-btn-red[disabled],
+fieldset[disabled] .satc-btn-red {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+/** END RED BUTTON **/
+	
 /**
  * SATC - Simple Add To Calendar Plugin Css	
  * 

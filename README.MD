@@ -16,28 +16,43 @@ This plugins add shortcode which allow simple creation of event links
 
 The following tag is used to create a simple event link
 
+Uses twitter bootstrap for dropdown menus and buttons (http://getbootstrap.com)
+
 `[satc]`
 
 It accepts several required parameters and a few optionl:
 
+*	theme 				- Optional, used to switch between themes. Defaults to 'text'.  The following themes are supported: 
+							"satc-image-cal1", "satc-image-cal2", "satc-image-cal3", "satc-btn-blue", "satc-btn-green", "satc-btn-ltblue", "satc-btn-orange", "satc-btn-red"
+*	link_text 			- Optional, used when theme is set to 'text'.
 *	start_date 			- Required, accepts a variety of formats.
 *	start_time			- Required, accepts a variety of formats.
 *	end_date			- Required, accepts a variety of formats.
 *	end_time			- Required, accepts a variety of formats.
-*	organizer			- Required, Organizer of the event.
-*	name				- Required, Name of event.
-*	summary				- Required, Summary of the event
-*	description 		- Required, Description of the event. Converts breaks to new lines but accepts no other html.
 *	timezone			- Required, Timezone of the event. Timezone codes are found here: http://php.net/manual/en/timezones.php
-*	event_summary		- Required, Summary of the event
+*	event_name			- Required, Name of event.
+*	organizer			- Required, Organizer of the event.
+*	location			- Required, Location of the event.
 *	filename			- Optional, name of the file.
-*	theme 				- Optional, used to switch between themes. Defaults to 'text'.  The following themes are supported: "satc-image-cal1", "satc-image-cal2", "satc-image-cal3", "satc-btn-blue", "satc-btn-green"
-*	link_text 			- Optional, used when theme is set to 'text'.
+*	description 		- Required, Description of the event. Converts breaks to new lines but accepts no other html.
  
 # Example
 
-	[satc theme="text" link_text="Click To Add To Calendar" summary="Event Summary" start_date="2/6/2015" start_time="11:30am" end_date="2/6/2015" end_time="12:00pm" name="Test Event" description="This is a test event" timezone="America/Denver" organizer="winterpk" location="my house"]
+	[satc
+		theme="text"
+		link_text="Click To Add To Calendar" 
+		start_date="2/6/2015" 
+		start_time="11:30am" 
+		end_date="2/6/2015" 
+		end_time="12:00pm"
+		timezone="America/Denver"
+		event_name="Test Event"
+		organizer="winterpk" 
+		location="Brazil" 
+		filename="brazil.ics"
+	]
 	Description text goes here
+	Description line 2
 	[/satc]
 
 # Installation
@@ -67,11 +82,18 @@ For now only Outlook and iCalendar
 
 # Changelog 
 
+## 1.2.2
+
+* Added three new themes, ltblue, orange and red btns
+* Removed first break from description
+* Removed summary
+* Changed name to event name
+* Used event name in ics file creation
+
 ## 1.2.1
 
 * Fixed a bug with filename attribute
 * Updated CSS
-* Updated Readme
 
 ## 1.2.0
 * Added Google Calender support
@@ -80,5 +102,3 @@ For now only Outlook and iCalendar
 ## 1.0.0
 * First release candidate
 * Very basic functionality
-
-

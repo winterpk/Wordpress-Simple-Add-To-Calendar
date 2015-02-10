@@ -40,7 +40,7 @@ var satcOnClick = function(ele) {
 	}
 	
 	// Build vcalendar string ...
-	var vEvent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:alpinesbsolutions.com\nBEGIN:VEVENT\nUID:"+eventDetails['uid']+"\nDTSTAMP;TZID=UTC:"+eventDetails['now']+"Z\nDTSTART;TZID=UTC:"+eventDetails['start_date']+"Z\nSEQUENCE:0\nTRANSP:OPAQUE\nDTEND;TZID=UTC:"+eventDetails['end_date']+"Z\nLOCATION:"+eventDetails['location']+"\nSUMMARY:"+eventDetails['summary']+"\nDESCRIPTION:"+eventDetails['description']+"\nEND:VEVENT\nEND:VCALENDAR";
+	var vEvent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:alpinesbsolutions.com\nBEGIN:VEVENT\nUID:"+eventDetails['uid']+"\nDTSTAMP;TZID=UTC:"+eventDetails['now']+"Z\nDTSTART;TZID=UTC:"+eventDetails['start_date']+"Z\nSEQUENCE:0\nTRANSP:OPAQUE\nDTEND;TZID=UTC:"+eventDetails['end_date']+"Z\nLOCATION:"+eventDetails['location']+"\nSUMMARY:"+eventDetails['event_name']+"\nDESCRIPTION:"+eventDetails['description']+"\nEND:VEVENT\nEND:VCALENDAR";
 	if (typeof eventDetails['filename'] == "undefined") {
 		filename = eventDetails['uid']+'.ics';
 	} else {

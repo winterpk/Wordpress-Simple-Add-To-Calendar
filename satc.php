@@ -47,10 +47,9 @@ class satc {
 		'start_time',
 		'end_date',
 		'end_time',
-		'name',
+		'event_name',
 		'organizer',
 		'location',
-		'summary',
 	);
 	
 	var $optional_fields = array(
@@ -119,6 +118,9 @@ class satc {
 		$description = str_replace('<p>', '', $description);
 		$description = str_replace('</p>', '<br />', $description);
 		
+		// Rip out any breaks that appear at the beginning of string
+		$description = preg_replace('/^<br.*\/>/Uis', '', $description, 1);
+		
 		// Convert breaks to LITERAL new line characters
     	$satc->valid_fields['description'] = strip_tags( str_ireplace($breaks, "\\n", addslashes( trim($description))));
 		
@@ -170,7 +172,7 @@ class satc {
 		$output .= '<ul class="satc-dropdown-menu dropdown-menu" role="menu">';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">Outlook</a></li>';
 		$output .= '<li><a onClick="satcOnClick(this)" href="#" data-format="iCal">iCalendar</a></li>';
-		$output .= "<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=".urlencode($this->valid_fields['name'])."&dates=".$this->valid_fields['start_date']."Z/".$this->valid_fields['end_date']."Z&details=".$this->valid_fields['url_description']."&location=".urlencode($this->valid_fields['location'])."&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>";
+		$output .= "<li><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=".urlencode($this->valid_fields['event_name'])."&dates=".$this->valid_fields['start_date']."Z/".$this->valid_fields['end_date']."Z&details=".$this->valid_fields['url_description']."&location=".urlencode($this->valid_fields['location'])."&trp=false&sprop=&sprop=name:\" target=\"_blank\" rel=\"nofollow\">Google</a></li>";
 		$output .= '';
     	$output .= '</ul>';
 		$output .= '</div>';
