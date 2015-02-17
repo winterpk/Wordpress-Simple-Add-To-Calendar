@@ -6,7 +6,7 @@
 Plugin Name: Simple Add To Calendar
 Plugin URI: http://alpinesbsolutions.com
 Description: A simple shortcode implementation to create Add To Calendar link on any page
-Version: 1.0.0
+Version: 1.3.1
 Author: Winterpk
 Author URI: http://alpinesbsolutions.com
 License: GPLv2 or later
@@ -181,8 +181,10 @@ class satc {
 		}
 		
 		// Parse and format start date/time and end date/time
-		$satc->valid_fields['start_date'] = $start_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
-		$satc->valid_fields['end_date'] = $end_date->setTimezone(new DateTimeZone('UTC'))->format('Ymd\THis');
+		$start_date->setTimezone(new DateTimeZone('UTC'));
+		$end_date->setTimezone(new DateTimeZone('UTC'));
+		$satc->valid_fields['start_date'] = $start_date->format('Ymd\This');
+		$satc->valid_fields['end_date'] = $end_date->format('Ymd\This');
 		
 		// Replace breaks with \n for icalformat then striptags.
 		// We also need to comment out the \n characters so vcalendar can parse it properly

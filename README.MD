@@ -4,11 +4,15 @@ Donate link:
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Create a simple link for calendar events 
+
+# Requirements
+PHP >= 5.2
+Apache >= 2.2.22
 
 # Description 
 
@@ -69,6 +73,10 @@ For now only Outlook and iCalendar
 
 
 # Changelog 
+
+## 1.3.1
+ 
+* Fixed a fatal error on PHP 5.2 systems with the DateTime object
 
 ## 1.3.0
 
