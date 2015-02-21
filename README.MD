@@ -4,7 +4,7 @@ Donate link:
 Tags: comments, spam
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,12 @@ For now only Outlook and iCalendar
 
 
 # Changelog 
+
+## 1.3.2
+
+* Fixed an issue with date/times
+* Fixed a JS selector issue when wordpress inserts breaks automatically
+* Fixed an issue with new lines not working for description on some Wordpress installs
 
 ## 1.3.1
  

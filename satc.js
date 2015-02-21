@@ -17,6 +17,7 @@
  *
  */
 var satcOnClick = function(ele) {
+	console.log(ele);
 	function hasClass(element, cls) {
 	    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 	}
@@ -28,7 +29,16 @@ var satcOnClick = function(ele) {
 		}
     	ele = ele.parentNode;
 	}
-	var inputElements = satcEventEle.children[1].children;
+	// console.log(satcEventEle); Exists on both
+	
+	// Loop through children to find the form
+	for (var key in satcEventEle.children) {
+		if (satcEventEle.children[key].id == 'satc-form') {
+			var satcForm = satcEventEle.children[key];
+			break;
+		}
+	}
+	var inputElements = satcForm.children;
 	var eventDetails = {};
 	for (var key in inputElements) {
 		if (inputElements[key].tagName == 'INPUT') {

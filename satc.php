@@ -122,7 +122,7 @@ class satc {
 	static function uninstall() {
 		$satc = new satc;
 		// Delete the temp folder
-		unlink($satc->rrmdir($satc->temp_path));
+		@unlink($satc->rrmdir($satc->temp_path));
 	}
 	
 	/**
@@ -183,15 +183,19 @@ class satc {
 		// Parse and format start date/time and end date/time
 		$start_date->setTimezone(new DateTimeZone('UTC'));
 		$end_date->setTimezone(new DateTimeZone('UTC'));
-		$satc->valid_fields['start_date'] = $start_date->format('Ymd\This');
-		$satc->valid_fields['end_date'] = $end_date->format('Ymd\This');
-		
-		// Replace breaks with \n for icalformat then striptags.
-		// We also need to comment out the \n characters so vcalendar can parse it properly
-		$breaks = array("<br />","<br>","<br/>");
+		$satc->valid_fields['start_date'] = $start_date->format('Ymd\THis');
+		$satc->valid_fields['end_date'] = $end_date->format('Ymd\THis');
+		$breaks = array("<br />", "<br>", "<br/>");
 		
 		// Decode all weird html entites
 		$description = html_entity_decode($description);
+	
+		
+		// Remove any new lines or breaks from the beginning of the string
+		$description = preg_replace('/^(\<br>|<br\/>|<br\s\/>|\\r|\\n|\\r\\n)/', '', $description);
+		
+		// Convert new line characters to breaks
+		$description = nl2br($description);
 		
 		// Remove all new line characters
 		$description = str_replace("\n", "", $description);
@@ -209,11 +213,11 @@ class satc {
 		
 		$satc->valid_fields['url_description'] = urlencode(strip_tags(str_ireplace($breaks, "\n", trim($description))));
 
-		// Add a UID 
+		// Add a UID
 		$satc->valid_fields['uid'] = uniqid();
 		
 		// Create a vcal format current time
-		$satc->valid_fields['now'] = date('Ymd\This'); 
+		$satc->valid_fields['now'] = date('Ymd\THis'); 
 		
 		// Get rid of start and end times because we no longer need those
 		unset($satc->valid_fields['start_time']);
